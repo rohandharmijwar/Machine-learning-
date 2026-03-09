@@ -1,0 +1,109 @@
+import pandas as pd
+import numpy as np
+
+nf1_data = pd.read_csv("House Price Prediction Dataset.csv")
+
+np.random.seed(0)
+nf1_data.head()
+missing_values_count = nf1_data.isnull().sum()
+missing_values_count[0:10]
+total_cells = np.product(nf1_data.shape)
+total_missing = missing_values_count.sum()
+
+percent_missing = (total_missing/total_cells)* 100
+print(percent_missing)
+nf1_data.dropna()
+columns_with_na_dropped = nf1_data.dropna(axis=1)
+columns_with_na_dropped.head()
+print("Columns in Original dataset: %d \n" % nf1_data.shape[1])
+print("Columns with na's dropped: %d" % columns_with_na_dropped.shape[1])
+subset_nf1_data = nf1_data.loc[:, 'Area' : 'Price'].head()
+subset_nf1_data
+subset_nf1_data.fillna(0)
+subset_nf1_data.fillna(method='bfill', axis=0) .fillna(0)
+import pandas as pd
+import numpy  as np
+
+from scipy import stats
+
+from mlxtend.preprocessing import minmax_scaling
+
+import seaborn as sns
+
+import matplotlib.pyplot as plt
+
+np.random.seed(0)
+
+
+
+original_data = np.random.exponential(size=1000)
+
+scaled_data = minmax_scaling(original_data, columns=[0])
+
+fig, ax = plt.subplots(1, 2, figsize=(15, 3))
+sns.histplot(original_data, ax=ax[0], kde=True, legend=False)
+ax[0].set_title("Original Data")
+sns.histplot(scaled_data, ax=ax[1], kde=True, legend=False)
+ax[1].set_title("Scaled data")
+plt.show()
+normalized_data = stats.boxcox(original_data)
+
+fig, ax=plt.subplots(1, 2, figsize=(15, 3))
+sns.histplot(original_data, ax=ax[0], kde=True, legend=False)
+ax[0].set_title("Original Data")
+sns.histplot(normalized_data[0], ax=ax[1], kde=True, legend=False)
+ax[1].set_title("Normalized data")
+plt.show()
+nf1_data.head()
+print(nf1_data['Area'].head())
+nf1_data['Area'].dtype
+nf1_data['date_parsed'] = pd.to_datetime(nf1_data['Area'])
+nf1_data['date_parsed'].head()
+day_of_month_nf1_data = nf1_data['date_parsed'].dt.day
+day_of_month_nf1_data.head()
+day_of_month_nf1_data = day_of_month_nf1_data.dropna()
+
+sns.distplot(day_of_month_nf1_data, kde=False, bins=31)
+import pandas as pd
+import numpy as np
+
+import fuzzywuzzy
+from fuzzywuzzy import process
+import charset_normalizer
+
+professors = pd.read_csv("House Price Prediction Dataset.csv")
+np.random.seed(0)
+professors.head()
+Location = professors['Location'].unique()
+
+
+Location.sort()
+Location
+professors['Location'] = professors['Location'].str.lower()
+
+professors['Location'] = professors['Location'].str.strip()
+Location = professors['Location'].unique()
+
+Location.sort()
+Location
+matches = fuzzywuzzy.process.extract("Downtown", Location,limit=10, scorer=fuzzywuzzy.fuzz.token_sort_ratio)
+matches
+def replace_matches_in_column(df, column, string_to_match, min_ratio = 47):
+
+    strings = df[column].unique()
+
+    matches = fuzzywuzzy.process.extract(string_to_match, strings, limit=10, scorer=fuzzywuzzy.fuzz.token_sort_ratio)
+
+    close_matches = [matches[0] for matches in matches if matches [1] >= min_ratio]
+
+    rows_with_matches = df[column].isin(close_matches)
+
+    df.loc[rows_with_matches, column] = string_to_match
+
+    print("All done!")
+
+replace_matches_in_column(df=professors, column='Location', string_to_match="Downtown")
+Location = professors['Location'].unique()
+
+Location.sort()
+Location
