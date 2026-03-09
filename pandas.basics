@@ -1,0 +1,124 @@
+import pandas as pd
+s = pd.Series([3, -5, 7, 4], index=['a', 'b', 'c', 'd'])
+data = {'Country': ['Belgium', 'India', 'Brazil'],
+        'Capital' : ['Brussesls', 'New delhi', 'Brasilla'],
+        'Population': [11190846, 1303171035, 207847528]}
+
+df = pd.DataFrame(data, columns=['Country', 'Capital', 'Population'])
+pd.read_csv("House Price Prediction Dataset.csv", header=None, nrows=5)
+df.to_csv('myDataFrame.csv')
+help(pd.Series.loc)
+s['b']
+df[1:]
+df.iloc[[0],[0]]
+s[~(s > 1)] 
+s[(s < -1) | (s > 2)]
+ s.drop(['a', 'c']) 
+ df.drop('Country', axis=1)
+df.sort_index()
+df.sort_values(by='Country')
+df.rank()
+df.shape
+df.index
+df.columns
+df.info()
+df.count()
+from numpy import random
+
+x= random.choice([3, 5, 7, 9], p=[0.1, 0.3, 0.6, 0.0], size=(100))
+
+print(x)
+from numpy import random
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+
+random.shuffle(arr)
+
+print(arr)
+arr = np.array([1, 2, 3, 4, 5])
+
+print(random.permutation(arr))
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.distplot([0, 1, 2, 3, 4, 5])
+
+plt.show()
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.displot([0, 1, 2, 3, 4, 5], kind="kde")
+
+plt.show()
+from numpy import random
+
+x = random.normal(size=(2, 3))
+
+print(x)
+from numpy import random
+
+x = random.normal(loc=1, scale=2, size=(2, 3))
+
+print(x)
+
+import pandas as pd
+
+df = pd.read_csv('House Price Prediction Dataset.csv')
+
+print(df.to_string())
+import pandas
+
+mydataset = {
+  'cars': ["BMW", "Volvo", "Ford"],
+  'passings': [3, 7, 2]
+}
+
+myvar = pandas.DataFrame(mydataset)
+
+print(myvar)
+import pandas as pd
+
+mydataset = {
+  'cars': ["BMW", "Volvo", "Ford"],
+  'passings': [3, 7, 2]
+}
+
+myvar = pd.DataFrame(mydataset)
+
+print(myvar)
+import pandas as pd
+
+print(pd.__version__)
+import pandas as pd
+
+a = [1, 7, 2]
+
+myvar = pd.Series(a)
+
+print(myvar)
+print(myvar[0])
+import pandas as pd
+
+a = [1, 7, 2]
+
+myvar = pd.Series(a, index = ["x", "y", "z"])
+
+print(myvar)
+print(myvar["y"])
+import pandas as pd
+
+calories = {"day1": 420, "day2": 380, "day3": 390}
+
+myvar = pd.Series(calories)
+
+print(myvar)
+import pandas as pd
+
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+
+myvar = pd.DataFrame(data)
+
+print(myvar)
